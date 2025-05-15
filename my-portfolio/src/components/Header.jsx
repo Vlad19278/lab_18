@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Використовуємо Link для навігації
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const activeStyle = { fontWeight: 'bold', textDecoration: 'underline' };
+
   return (
-    <header>
-      <nav>
-        <ul>
-          <li><Link to="/about">Про мене</Link></li>
-          <li><Link to="/my-city">Моє місто</Link></li>
-          <li><Link to="/my-future">Мій розвиток</Link></li>
-        </ul>
+    <header style={{ background: '#222', padding: '10px 20px' }}>
+      <nav style={{ display: 'flex', gap: 20 }}>
+        <NavLink to="/about" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Про мене</NavLink>
+        <NavLink to="/my-city" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Моє місто</NavLink>
+        <NavLink to="/my-future" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Мій розвиток</NavLink>
       </nav>
     </header>
   );
-}
+};
 
 export default Header;

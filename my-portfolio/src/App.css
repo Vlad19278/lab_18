@@ -1,32 +1,108 @@
+/* Загальні стилі */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-footer {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-h1, h2, h3 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
   color: #333;
 }
 
-ul {
-  list-style-type: none;
+/* Header */
+header {
+  background-color: #222;
+  padding: 15px 40px;
 }
 
-ul li {
-  display: inline;
-  margin-right: 10px;
+header nav {
+  display: flex;
+  gap: 30px;
+}
+
+header nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover,
+header nav a.active {
+  color: #00b894; /* зелений відтінок */
+  border-bottom: 2px solid #00b894;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: #bbb;
+  padding: 15px 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* Основний контент */
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  min-height: 60vh;
+}
+
+/* Заголовки */
+h1, h2 {
+  color: #222;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Посилання у контенті */
+a {
+  color: #0984e3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #74b9ff;
+  text-decoration: underline;
+}
+
+/* Списки */
+ul, ol {
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Блоки з погодою */
+section div {
+  margin-top: 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+  header nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  main {
+    margin: 15px;
+  }
 }

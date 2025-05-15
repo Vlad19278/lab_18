@@ -3,32 +3,39 @@ import axios from 'axios';
 
 const MyCity = () => {
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
+
+  const city = 'Kyiv'; // ваше місто
+  const apiKey = 'ВАШ_КЛЮЧ_ВІД_WEATHERAPI'; // замініть на свій ключ
 
   useEffect(() => {
-    // API запит для отримання погоди
-    axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.023&longitude=37.8022&hourly=temperature_2m')
-      .then(response => {
-        setWeather(response.data);  // Збереження даних в стейт
-      })
-      .catch(error => {
-        console.error('Помилка при отриманні даних про погоду:', error);
-      });
-  }, []);
+    const fetchWeather = async () => {
+      try {
+        const res = await axios.get(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=uk`);
+        setWeather(res.data);
+      } catch {
+        setError('Не вдалося завантажити погоду');
+      }
+    };
+
+    fetchWeather();
+  }, [city, apiKey]);
 
   return (
-    <div>
-      <h1>Моє місто</h1>
-      {weather ? (  // Умовний рендеринг
+    <section>
+      <h1>Моє місто: {city}</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {weather ? (
         <div>
-          <h2>{weather.city}</h2>  {/* Виведення назви міста */}
-          <p>Температура: {weather.temperature_2m}°C</p>  {/* Виведення температури */}
-          <p>Опис: {weather.description}</p>  {/* Виведення опису погоди */}
+          <p>Температура: {weather.current.temp_c} °C</p>
+          <p>Опис: {weather.current.condition.text}</p>
+          <p>Координати: {weather.location.lat}, {weather.location.lon}</p>
         </div>
-      ) : (  // Якщо дані не завантажено
-        <p>Завантаження...</p>
+      ) : (
+        <p>Завантаження погоди...</p>
       )}
-    </div>
+    </section>
   );
-}
+};
 
 export default MyCity;
